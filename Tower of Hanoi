@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+
+void movedisks(int disks, int currentpeg, int moveto, int helper)
+{
+    if (disks == 0)
+    {
+        return;
+    }
+    movedisks(disks - 1, currentpeg, helper, moveto);
+    cout << " Move from " << currentpeg << " to " << moveto << endl;
+    movedisks(disks - 1, helper, moveto, currentpeg);
+}
+
+int main()
+{
+    cin>>n;
+    movedisks(n, 1, 3, 2);
+}
