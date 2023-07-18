@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+map<int, int> mp;
+vector<int> cur_per;
+
+void rec(int level)
+{
+    if (level == n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            cout << cur_per[i] << " ";
+        }
+        cout << endl;
+        return;
+    }
+    for (auto v : mp)
+    {
+        if (v.second != 0)
+        {
+            mp[v.first]--;
+            cur_per.push_back(v.first);
+            rec(level + 1);
+            cur_per.pop_back();
+            mp[v.first]++;
+        }
+    }
+}
+
+void solve()
+{
+    cin >> n;
+    int arr[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+        mp[arr[i]]++;
+    }
+    rec(0);
+}
+signed main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    solve();
+}
